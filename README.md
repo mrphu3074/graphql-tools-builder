@@ -7,7 +7,7 @@
 # graphql-tools-builder
 Create Graphql schema effortlessly
 
-This library like a plugin for `graphql-tools` to make easier to organize your code.
+This library like a plugin for `graphql-tools` to organize your modules easier.
 
 ### Graphl-tools style
 
