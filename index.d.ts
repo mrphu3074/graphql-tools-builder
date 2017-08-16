@@ -1,1 +1,1 @@
-declare module 'ware';
+declare module 'graphql-tools-builder';
