@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["es5", "es6", "es7"],
+    "sourceMap": true,
+    "sourceRoot": "src",
+    "outDir": "build"
+  },
+  "include": ["./index.d.ts", "./src/**/*.ts", "./node_modules/**/*.d.ts"],
+  "exclude": ["node_modules"]
+}
