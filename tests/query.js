@@ -87,9 +87,9 @@ describe('Graphql Query', function() {
         return 'hello';
       });
 
-    const s = query.getResolver();
-    console.log(s(1, 2, 3));
-
-    expect(query.getResolver().then).to.equal('hello');
+    const resolver = query.getResolver();
+    resolver().then(res => {
+      expect(res).to.equal('hello');
+    });
   });
 });

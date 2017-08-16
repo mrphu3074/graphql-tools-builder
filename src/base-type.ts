@@ -63,7 +63,7 @@ export abstract class BaseType {
           }
         }
         return (...args) => {
-          return Promise.resolve(resolver(...args));
+          return new Promise(done => done()).then(resolver(...args));
         };
       } else {
         return this._resolver;

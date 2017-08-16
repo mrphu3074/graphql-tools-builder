@@ -83,8 +83,12 @@ describe('Graphql Mutation', function() {
       .param('name', 'String')
       .param('email', 'String', true)
       .output('[User]')
-      .resolver(Date);
-
-    expect(mutation.getResolver()).to.equal(Date);
+      .resolver(() => {
+        return 'hello';
+      });
+    const resolver = mutation.getResolver();
+    resolver().then(res => {
+      expect(res).to.equal('hello');
+    });
   });
 });

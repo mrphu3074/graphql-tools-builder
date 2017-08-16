@@ -58,10 +58,17 @@ describe('Graphql Object Type', function() {
 
   it('should set resolver', function() {
     const user = new Type('User');
-    user.field('name', 'String', true).resolver(() => {
-      
-    });
+    const typeResolver = {
+      creator() {
+        return 'hello';
+      }
+    };
+    user
+      .field('_id', 'String', true)
+      .field('name', 'String', true)
+      .field('email', 'String', true)
+      .resolver(typeResolver);
 
-    expect(user.getResolver()).to.equal(Date);
+    expect(user.getResolver()).to.equal(typeResolver);
   });
 });

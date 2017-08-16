@@ -19,7 +19,7 @@
     "compile": "tsc --project .",
     "dev": "yarn run compile -- --watch",
     "test": "mocha ./tests/*.js",
-    "coverage": "nyc --reporter=html mocha ./tests/*.js"
+    "coverage": "nyc --reporter lcovonly -R spec mocha ./tests/*.js"
   },
   "dependencies": {
     "deepmerge": "^1.5.0",

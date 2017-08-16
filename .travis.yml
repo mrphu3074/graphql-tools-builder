@@ -6,8 +6,11 @@ node_js:
   - "6"
   - "7"
 install:
+  - yarn global add codecov
   - yarn
 script:
-  - yarn run compile && yarn test
+  - yarn run compile
+  - yarn test
+  - codecov
 cache:
   yarn: true

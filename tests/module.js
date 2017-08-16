@@ -5,16 +5,17 @@ const { Module } = require('../build');
 describe('Graphql Module', function() {
   it('should init instance with default typeDefs and empty resolvers', function() {
     const userModule = new Module('User');
-    expect(userModule.getTypeDefs()).to.have.length(2);
+    expect(userModule.getTypeDefs()).to.have.length(0);
     expect(userModule.getResolvers()).to.empty();
   });
 
   it('createScalar', function() {
     const userModule = new Module('User');
-    const scalar = userModule.createScalar('Date').resolver(Date);
+    const resolver = { value: 1 };
+    const scalar = userModule.createScalar('Date').resolver(resolver);
     expect(userModule.getTypeDefs()).to.have.contain('scalar Date');
     expect(userModule.getResolvers()).to.have.property('Date');
-    expect(userModule.getResolvers()['Date']).to.equal(Date);
+    expect(userModule.getResolvers()['Date']).to.equal(resolver);
   });
 
   it('should not create duplicated Scalar type', function() {
@@ -166,7 +167,10 @@ describe('Graphql Module', function() {
 
     expect(userModule.getResolvers()).to.have.property('Query');
     expect(userModule.getResolvers().Query).to.have.property('getUser');
-    expect(userModule.getResolvers().Query.getUser()).to.equal('hello');
+
+    userModule.getResolvers().Query.getUser().then(res => {
+      expect(res).to.equal('hello');
+    })
   });
 
   it('should not create duplicated Query', function() {
@@ -209,7 +213,9 @@ describe('Graphql Module', function() {
 
     expect(userModule.getResolvers()).to.have.property('Mutation');
     expect(userModule.getResolvers().Mutation).to.have.property('createUser');
-    expect(userModule.getResolvers().Mutation.createUser()).to.equal('hello');
+    userModule.getResolvers().Mutation.createUser().then((res) => {
+      expect(res).to.equal('hello');
+    });
   });
 
   it('should not create duplicated Mutation', function() {
